@@ -1,0 +1,43 @@
+# Default experimental configuration. Change a value only if you are
+# deliberately deviating from the reported setup, and report the deviation.
+
+generation:
+  backbone: google/flan-t5-large   # Section 5.6: "Flan-T5-Large is used as the common generation backbone"
+  device: cuda
+  temperature: 0.2
+  max_context_tokens: 2048
+  max_new_tokens: 256
+
+retrieval:
+  k: 25                             # Section 5.6: "graph-grounded retrieval selects up to k = 25 relevant triples"
+  max_context_tokens: 2048          # shared budget B across all compared methods (Section 5.5)
+
+graph_summarization:
+  keep_ratio: 0.25                  # Table 3 reports ~75% node/edge reduction
+  min_nodes: 5
+
+extraction:
+  backend: scispacy                 # scispacy | rule_based (rule_based is dependency-free, for testing only)
+  scispacy_model: en_core_sci_lg
+
+verification:
+  support_threshold: 0.5
+  contradiction_margin: 0.3
+
+data:
+  mimic_dir: /path/to/your/credentialed/mimic-iii   # see README.md: PhysioNet access required
+  i2b2_dir: /path/to/your/credentialed/i2b2-2010     # see README.md: n2c2 DUA required
+  split:
+    train: 0.70
+    val: 0.10
+    test: 0.20
+    seed: 42
+
+hardware:
+  gpu: "NVIDIA A100 (40GB VRAM)"     # as reported in Section 5.16 for the paper's numbers
+  system_memory_gb: 128
+
+runs:
+  n_repeats: 3                      # Section 5.6: "results involving stochastic generation are averaged over three runs"
+
+context_robustness_budgets: [128, 256, 512, 1024, 2048]   # 2^7 .. 2^11, Figure 5

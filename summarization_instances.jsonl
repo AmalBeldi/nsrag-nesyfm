@@ -1,0 +1,1 @@
+{"patient_id": "1", "notes": [{"note_id": "n1", "text": "Patient diagnosed with type 2 diabetes. Started metformin.", "timestamp": "2024-01-01"}], "structured_events": [], "reference_summary": "Patient with type 2 diabetes started on metformin for glucose control.", "reference_assertions": ["patient has type 2 diabetes"]}

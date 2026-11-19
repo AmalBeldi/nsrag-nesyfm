@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+build/
+dist/
+
+# Local results and credentialed data -- never commit these
+results/*.json
+*.csv
+!sample_data/**/*.csv
+mimic-iii/
+i2b2-2010/
+
+# Model caches
+.cache/
